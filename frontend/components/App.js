@@ -5,13 +5,13 @@ import LoginForm from './LoginForm'
 import Message from './Message'
 import ArticleForm from './ArticleForm'
 import Spinner from './Spinner'
-import Axios from 'axios'
+import axios from 'axios'
 import { axiosWithAuth } from '../axios'
 
 const articlesUrl = 'http://localhost:9000/api/articles'
 const loginUrl = 'http://localhost:9000/api/login'
 
-export default function App() {+
+export default function App() {
   // ✨ MVP can be achieved with these states
   const [message, setMessage] = useState('')
   const [articles, setArticles] = useState([])
@@ -25,7 +25,7 @@ export default function App() {+
 
   const logout = () => {
     localStorage.removeItem('token')
-    setMessage('Goodby!')
+    setMessage('Goodbye!')
     redirectToLogin();
     setArticles([])
   }
