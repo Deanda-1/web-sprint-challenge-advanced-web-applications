@@ -17,11 +17,11 @@ export default function LoginForm(props) {
   const onSubmit = evt => {
     evt.preventDefault()
    login(values)
-   setValues(initialFormValues)
+   setValues(initialFormValues);
   }
 
   const isDisabled = () => {
-    if(values.username.trim().length <= 3 && values.password.trim().length <= 8) {
+    if(values.username.trim().length >= 3 && values.password.trim().length >= 8) {
       return false
     } else {
       return true
