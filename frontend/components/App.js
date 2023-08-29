@@ -43,6 +43,11 @@ export default function App() {
       redirectToArticles()
       setSpinnerOn(false)
     })
+    .catch((err) => {
+      console.log(err)
+      setMessage('error: please try again')
+      setSpinnerOn(false)
+    })
   }
 
   const getArticles = (mess) => {
@@ -70,11 +75,15 @@ export default function App() {
       setSpinnerOn(false)
       console.err(err)
     })
+    .catch(err => {
+      setSpinnerOn(false)
+      console.error(err)
+    })
   }
 
   const updateArticle = ({ article_id, article }) => {
     const mess = true
-    setMessage(true)
+    setSpinnerOn(true)
     return axiosWithAuth().put(`${articlesUrl}/${article_id}`, article)
     .then(({data}) => {
       getArticles(mess);
@@ -95,6 +104,10 @@ export default function App() {
     .then(({data}) => {
       getArticles(mess);
       setMessage(data.message)
+      setSpinnerOn(false)
+    })
+    .catch(err => {
+      console.error(err)
       setSpinnerOn(false)
     })
   }
