@@ -8,7 +8,7 @@ const initialFormValues = { title: '', text: '', topic: '' }
 export default function ArticleForm(props) {
   const [values, setValues] = useState(initialFormValues)
   const { currentArticleId,
-          article, 
+          articles, 
           setCurrentArticleId,
           updateArticle,
           postArticle,
@@ -19,13 +19,13 @@ export default function ArticleForm(props) {
   }, [])
 
   useEffect(() => {
-    if(setCurrentArticleId) {
-      const currentArticle = article.filter(art => art.article_id === currentArticleId)
+    if(currentArticleId) {
+      const currentArticle = articles.filter(art => art.article_id === currentArticleId)
       setValues(currentArticle[0])
     } else {
       setValues(initialFormValues)
     }
-  }, [setCurrentArticleId])
+  }, [currentArticleId])
 
   const onChange = evt => {
     const { id, value } = evt.target
@@ -56,7 +56,7 @@ export default function ArticleForm(props) {
     }
   }
 
-  const Cancel = (e) => {
+  const cancel = (e) => {
     e.preventDefault();
     setCurrentArticleId();
     setValues(initialFormValues)
